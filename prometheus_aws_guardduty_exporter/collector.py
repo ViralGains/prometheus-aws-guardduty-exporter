@@ -38,7 +38,7 @@ class GuardDutyMetricsCollector():
         return [currentFindingsMetric, scrapeErrorsMetric]
 
     def _collectMetricsByRegion(self, region):
-        botoConfig = botocore.client.Config(connect_timeout=2, read_timeout=10, retries={"max_attempts": 2})
+        botoConfig = botocore.client.Config(connect_timeout=10, read_timeout=10, retries={"max_attempts": 2})
         session = boto3.session.Session()
         client = session.client("guardduty", config=botoConfig, region_name=region)
         regionStats = {"low": 0, "medium": 0, "high": 0}
