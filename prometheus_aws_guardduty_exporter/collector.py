@@ -39,7 +39,7 @@ class GuardDutyMetricsCollector():
         return [currentFindingsMetric, scrapeErrorsMetric]
 
     def _collectMetricsByRegion(self, region, roleToAssumeArn=None):
-        botoConfig = botocore.client.Config(connect_timeout=2, read_timeout=10, retries={"max_attempts": 2})
+        botoConfig = botocore.client.Config(connect_timeout=10, read_timeout=10, retries={"max_attempts": 2})
 
         if roleToAssumeArn is not None:
             assumeRoleResponse = boto3.client('sts', config=botoConfig, region_name=region).assume_role(
